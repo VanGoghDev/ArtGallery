@@ -54,8 +54,9 @@ namespace ArtGallery.Controllers
             kMeanCluster kmeanCluster = new kMeanCluster();
             kmeanCluster.setPoint(routes.allPoints);
             kmeanCluster.clustering();
-            List<Point> pointsList = kmeanCluster.clusterList[0].points;
-            string json = JsonConvert.SerializeObject(pointsList);
+            List<Cluster> pointsList = kmeanCluster.clusterList;
+            List<Point>[] points = { kmeanCluster.clusterList[0].points, kmeanCluster.clusterList[1].points }; 
+            string json = JsonConvert.SerializeObject(points);
             return json;
         }
 
