@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ArtGallery.DomainModels;
+using Newtonsoft.Json;
 
 namespace ArtGallery.Controllers
 {
@@ -38,13 +40,29 @@ namespace ArtGallery.Controllers
 
         public ActionResult About()
         {
+
+            
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
+        public string Cluster()
+        {
+            Routes routes = new Routes();
+            routes.UploadPoints("C:/VS Projects/ArtGallery/ArtGallery/ArtGallery/App_Data/Paths.txt");
+            kMeanCluster kmeanCluster = new kMeanCluster();
+            kmeanCluster.setPoint(routes.allPoints);
+            kmeanCluster.clustering();
+            List<Point> pointsList = kmeanCluster.clusterList[0].points;
+            string json = JsonConvert.SerializeObject(pointsList);
+            return json;
+        }
+
         public ActionResult Contact()
         {
+            
+
             ViewBag.Message = "Your contact page.";
 
             return View();

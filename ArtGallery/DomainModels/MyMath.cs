@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using ArtGallery.Models;
 
-namespace ArtGallery.Services
+namespace ArtGallery.DomainModels
 {
     public class MyMath
     {
