@@ -30,7 +30,9 @@ namespace ArtGallery.Controllers
         [HttpPost]
         public ActionResult AboutMe(User user)
         {
-            _userRepository.AddUser(user);
+            Order order = new Order();
+            order.User = user;
+            _userRepository.AddUser(user, order);
             return View();
         }
 
